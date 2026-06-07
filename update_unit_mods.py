@@ -403,15 +403,15 @@ def update_all():
             no_units.append(result[1])
     executor.shutdown()
     patch_files_updated = len(patches) - len(no_units) - len(corrupted_files)
-    m = f"Update Complete!\nUpdated {patch_files_updated} patch file(s) that contained unit resources."
-    if len(no_units) > 0:
-        m += f"\n{len(no_units)} patch file(s) did not contain any unit resources and were skipped."
-    messagebox.showinfo(message=m)
     if len(corrupted_files) > 0:
         m = f"Found {len(corrupted_files)} corrupted patch file(s)!"
         for name in corrupted_files:
             m += f"\n{os.path.normpath(name)}"
         messagebox.showerror(message=m)
+    m = f"Update Complete!\nUpdated {patch_files_updated} patch file(s) that contained unit resources."
+    if len(no_units) > 0:
+        m += f"\n{len(no_units)} patch file(s) did not contain any unit resources and were skipped."
+    messagebox.showinfo(message=m)
     
 while True:
     
